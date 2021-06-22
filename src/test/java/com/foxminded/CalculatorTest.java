@@ -2,8 +2,7 @@ package com.foxminded;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Deque;
-import java.util.Stack;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -13,16 +12,18 @@ class CalculatorTest {
 
     @Test
     void getDivisionListTestOne() {
-        Stack<Integer> expected = new Stack<>();
+        ArrayList<Integer> expected = new ArrayList<>();
         int[] arr = {1, 24, 25, 12, 14, 28, 29, 36, 38, 4};
         for (int value : arr) {
             expected.add(value);
         }
 
+        Collections.reverse(expected);
+
         Deque<Integer> actual= calculator.getDivisionList(78945, 4, 19736);
 
         for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.pop(), actual.pop());
+            assertEquals(expected.get(i), actual.pop());
         }
     }
 
