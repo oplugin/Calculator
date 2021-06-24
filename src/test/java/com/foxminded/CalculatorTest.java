@@ -29,7 +29,7 @@ class CalculatorTest {
 
     @Test
     void getDivisionListTestTwo() {
-        Stack<Integer> expected = new Stack<>();
+        ArrayList<Integer> expected = new ArrayList<>();
         int[] arr = {15, 207, 222, 161, 183, 46};
         for (int value : arr) {
             expected.add(value);
@@ -37,8 +37,8 @@ class CalculatorTest {
 
         Deque<Integer> actual= calculator.getDivisionList(6432, 23, 279);
 
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.pop(), actual.pop());
+        for (Integer integer : expected) {
+            assertEquals(integer, actual.pop());
         }
     }
 
@@ -46,13 +46,13 @@ class CalculatorTest {
     void dividendLessThanDividerTest() {
         int dividend = 10;
         int divider = 20;
-        Stack<Integer> expected = new Stack<>();
+        ArrayList<Integer> expected = new ArrayList<>();
         expected.add(10);
         expected.add(0);
 
         Result actual = calculator.divide(dividend, divider);
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.pop(), actual.getIntermediateResults().pop());
+        for (Integer integer : expected) {
+            assertEquals(integer, actual.getIntermediateResults().pop());
         }
     }
 
