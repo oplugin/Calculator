@@ -1,7 +1,6 @@
 package com.foxminded;
 
 import java.util.ArrayList;
-import java.util.Deque;
 
 public final class Result {
     private final int dividend;
