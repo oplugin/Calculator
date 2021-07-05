@@ -15,8 +15,11 @@ public class Formatter {
         int countOfDigitsInPeek = getCountOfDigits(getPeekNumber());
         int countOfSpaces = countOfDigitsInDividend - countOfDigitsInPeek;
         int countOfDigitsInResult = getCountOfDigits(result.getResultOfCalculations());
-        outputString.add(" " + result.getIntermediateResults().pop() + repeatSymbol(countOfSpaces, " ")
+
+        outputString.add(" " + result.getIntermediateResults().get(0) + repeatSymbol(countOfSpaces, " ")
                 + "|" + repeatSymbol(countOfDigitsInResult, "-") + "\n");
+
+        result.getIntermediateResults().remove(0);
 
         outputString.add(" " + repeatSymbol(countOfDigitsInDividend - countOfSpaces, "-") + repeatSymbol(countOfSpaces, " ")
                 + "|" + result.getResultOfCalculations() + "\n");
@@ -29,18 +32,20 @@ public class Formatter {
         StringJoiner joiner = new StringJoiner("");
         int countOfDigits = getCountOfDigits(getPeekNumber());
         int numberOfSort = countOfDigitsInPrevious + 1;
+        int i = 0;
         while (result.getIntermediateResults().size() > 1) {
             numberOfSort++;
             int countOfSpaces = numberOfSort - countOfDigits;
 
-            joiner.add(repeatSymbol(countOfSpaces - 1, " ") + "_" + result.getIntermediateResults().pop() + "\n");
-            joiner.add(repeatSymbol(countOfSpaces, " ") + result.getIntermediateResults().pop() + "\n");
+            joiner.add(repeatSymbol(countOfSpaces - 1, " ") + "_" + result.getIntermediateResults().get(i) + "\n");
+            result.getIntermediateResults().remove(i);
+            joiner.add(repeatSymbol(countOfSpaces, " ") + result.getIntermediateResults().get(i) + "\n");
+            result.getIntermediateResults().remove(i);
             joiner.add(repeatSymbol(countOfSpaces, " ") + repeatSymbol(countOfDigits, "-") + "\n");
 
             countOfDigits = getCountOfDigits(getPeekNumber());
-
         }
-        joiner.add(repeatSymbol(numberOfSort - getCountOfDigits(getPeekNumber()), " ") + result.getIntermediateResults().pop());
+        joiner.add(repeatSymbol(numberOfSort - getCountOfDigits(getPeekNumber()), " ") + result.getIntermediateResults().remove(0));
         return joiner.toString();
     }
 
@@ -57,7 +62,7 @@ public class Formatter {
 
     protected int getPeekNumber(){
         if(!result.getIntermediateResults().isEmpty()){
-            return result.getIntermediateResults().peek();
+            return result.getIntermediateResults().get(0);
         }else{
             throw new NullPointerException("List is empty!");
         }

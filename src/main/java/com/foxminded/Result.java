@@ -1,12 +1,13 @@
 package com.foxminded;
 
+import java.util.ArrayList;
 import java.util.Deque;
 
 public final class Result {
     private final int dividend;
     private final int divider;
     private final int resultOfCalculations;
-    private final Deque<Integer> intermediateResults;
+    private final ArrayList<Integer> intermediateResults;
 
     public int getDividend() {
         return dividend;
@@ -20,14 +21,14 @@ public final class Result {
         return resultOfCalculations;
     }
 
-    public Deque<Integer> getIntermediateResults() {
+    public ArrayList<Integer> getIntermediateResults() {
         return intermediateResults;
     }
 
-    public Result(int dividend, int divider, int resultOfCalculations, Deque<Integer> stack) {
+    public Result(int dividend, int divider, int resultOfCalculations, ArrayList<Integer> integerArrayList) {
         this.dividend = dividend;
         this.divider = divider;
         this.resultOfCalculations = resultOfCalculations;
-        this.intermediateResults = stack;
+        this.intermediateResults = integerArrayList;
     }
 }

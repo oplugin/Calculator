@@ -12,34 +12,17 @@ class CalculatorTest {
 
     @Test
     void getDivisionListTestOne() {
-        ArrayList<Integer> expected = new ArrayList<>();
-        int[] arr = {1, 24, 25, 12, 14, 28, 29, 36, 38, 4};
+
+        ArrayList<Integer> list =  new ArrayList<>();
+        int[] arr = {38, 36, 29, 28, 14, 12, 25, 24, 1};
         for (int value : arr) {
-            expected.add(value);
+            list.add(value);
         }
 
-        Collections.reverse(expected);
+        Result expected = new Result(78945,4,19736, list);
 
-        Deque<Integer> actual= calculator.getDivisionList(78945, 4, 19736);
-
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), actual.pop());
-        }
-    }
-
-    @Test
-    void getDivisionListTestTwo() {
-        ArrayList<Integer> expected = new ArrayList<>();
-        int[] arr = {15, 207, 222, 161, 183, 46};
-        for (int value : arr) {
-            expected.add(value);
-        }
-
-        Deque<Integer> actual= calculator.getDivisionList(6432, 23, 279);
-
-        for (Integer integer : expected) {
-            assertEquals(integer, actual.pop());
-        }
+        Result actual = calculator.divide(78945, 4);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -52,7 +35,7 @@ class CalculatorTest {
 
         Result actual = calculator.divide(dividend, divider);
         for (Integer integer : expected) {
-            assertEquals(integer, actual.getIntermediateResults().pop());
+            assertEquals(integer, actual.getIntermediateResults().remove(0));
         }
     }
 

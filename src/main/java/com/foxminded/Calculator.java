@@ -1,7 +1,6 @@
 package com.foxminded;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 public class Calculator {
 
@@ -10,33 +9,37 @@ public class Calculator {
             throw new ArithmeticException("Division by zero!");
         }
         int result = dividend / divider;
-        Deque<Integer> stack = getDivisionList(dividend, divider, result);
+        ArrayList<Integer> divisionList = getDivisionList(dividend, divider, result);
 
-        return new Result(dividend, divider, result, stack);
+        return new Result(dividend, divider, result, divisionList);
 
     }
 
-    protected Deque<Integer> getDivisionList(int dividend, int divider, int result) {
-        Deque<Integer> stack = new ArrayDeque<>();
+    protected ArrayList<Integer> getDivisionList(int dividend, int divider, int result) {
+        ArrayList<Integer> integers = new ArrayList<>();
         int remain = dividend % divider;
         if (dividend < divider){
-            stack.push(remain);
-            stack.push(result * divider);
-            return stack;
+            integers.add(remain);
+            integers.add(result * divider);
+            return integers;
         }
-        stack.push(remain);
+        integers.add(remain);
 
         while (result > 0) {
             int lastDigit = result % 10;
+            if (lastDigit == 0) {
+                result /= 10;
+                continue;
+            }
             int multi = lastDigit * divider;
-            stack.push(multi);
-            stack.push(multi + remain);
+            integers.add(multi);
+            integers.add(multi + remain);
             dividend /= 10;
             remain = dividend % divider;
             result /= 10;
         }
-        stack.pop();
-
-        return stack;
+        integers.remove(integers.size()-1);
+        Collections.reverse(integers);
+        return integers;
     }
 }

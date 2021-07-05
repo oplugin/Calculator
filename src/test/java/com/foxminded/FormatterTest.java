@@ -3,6 +3,7 @@ package com.foxminded;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
 
@@ -13,12 +14,12 @@ class FormatterTest {
     Formatter formatter = new Formatter();
     @Test
     void getFormatStringTest() {
-        Deque<Integer> stack = new ArrayDeque<>();
-        stack.push(2);
-        stack.push(36);
-        stack.push(38);
-        stack.push(4);
-        Result result = new Result(78, 4, 19, stack);
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(2);
+        integers.add(36);
+        integers.add(38);
+        integers.add(4);
+        Result result = new Result(78, 4, 19, integers);
 
         String expected = "_78|4\n" + " 4 |--\n" + " - |19\n" + "_38\n" + " 36\n" + " --\n" + "  2";
 
@@ -52,7 +53,7 @@ class FormatterTest {
 
     @Test
     void tryGettingPeekOfNullTest() {
-        Result result = new Result(78, 4, 19, new ArrayDeque<>());
+        Result result = new Result(78, 4, 19, new ArrayList<>());
 
         Exception ex = assertThrows(NullPointerException.class, () -> formatter.format(result), "Invalid error message.");
 
