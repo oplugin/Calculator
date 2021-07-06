@@ -12,14 +12,9 @@ class CalculatorTest {
 
     @Test
     void getDivisionListTestOne() {
-
-        ArrayList<Integer> list =  new ArrayList<>();
-        int[] arr = {38, 36, 29, 28, 14, 12, 25, 24, 1};
-        for (int value : arr) {
-            list.add(value);
-        }
-
-        Result expected = new Result(78945,4,19736, list);
+        System.out.println();
+        Result expected = new Result(78945,4,19736,
+                Arrays.asList(4, 38, 36, 29, 28, 14, 12, 25, 24, 1));
 
         Result actual = calculator.divide(78945, 4);
         assertEquals(expected, actual);

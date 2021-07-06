@@ -9,14 +9,14 @@ public class Calculator {
             throw new ArithmeticException("Division by zero!");
         }
         int result = dividend / divider;
-        ArrayList<Integer> divisionList = getDivisionList(dividend, divider, result);
+        List<Integer> divisionList = getDivisionList(dividend, divider, result);
 
         return new Result(dividend, divider, result, divisionList);
 
     }
 
-    protected ArrayList<Integer> getDivisionList(int dividend, int divider, int result) {
-        ArrayList<Integer> integers = new ArrayList<>();
+    protected List<Integer> getDivisionList(int dividend, int divider, int result) {
+        List<Integer> integers = new ArrayList<>();
         int remain = dividend % divider;
         if (dividend < divider){
             integers.add(remain);
